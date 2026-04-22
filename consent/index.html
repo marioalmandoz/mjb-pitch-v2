@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS Consent Policy — My Job Bookie™</title>
+  <meta name="description" content="SMS Consent and Opt-In Policy for My Job Bookie™ and Ground Control IP LLC.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://myjobbook.com/consent">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f7fa;
+      color: #0d2244;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .nav {
+      background: #0d2244;
+      padding: 0 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .nav-brand {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+
+    .nav-brand sup { font-size: 0.55em; }
+
+    .nav-cta {
+      background: #c41f2e;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 30px;
+    }
+
+    .nav-cta:hover { background: #a41826; }
+
+    .page-header {
+      background: #0d2244;
+      border-bottom: 3px solid #c41f2e;
+      padding: 48px 56px;
+    }
+
+    .page-header .label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c41f2e;
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .page-header .updated {
+      font-size: 0.8rem;
+      color: #7a90a8;
+    }
+
+    .content-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+    }
+
+    .section {
+      background: #fff;
+      border: 1px solid #d8dfe8;
+      border-top: 3px solid #0d2244;
+      padding: 32px 36px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0d2244;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #d8dfe8;
+    }
+
+    .section h2 .num {
+      color: #c41f2e;
+      margin-right: 6px;
+    }
+
+    .section h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0d2244;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 20px 0 10px;
+    }
+
+    .section p {
+      font-size: 0.9rem;
+      color: #4a5d70;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      margin: 8px 0 12px 20px;
+    }
+
+    .section ul li {
+      font-size: 0.9rem;
+      color: #4a5d70;
+      line-height: 1.65;
+      margin-bottom: 6px;
+    }
+
+    .highlight {
+      background: #f5f7fa;
+      border-left: 3px solid #c41f2e;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 0.88rem;
+      color: #4a5d70;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* Requirements grid */
+    .req-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .req-item {
+      background: #f5f7fa;
+      border: 1px solid #d8dfe8;
+      border-top: 2px solid #0d2244;
+      padding: 16px;
+    }
+
+    .req-item .req-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c41f2e;
+      margin-bottom: 6px;
+    }
+
+    .req-item p {
+      font-size: 0.84rem;
+      margin-bottom: 0;
+    }
+
+    /* Sample messages table */
+    .msg-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.87rem;
+    }
+
+    .msg-table th {
+      background: #0d2244;
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .msg-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #d8dfe8;
+      color: #4a5d70;
+      line-height: 1.55;
+      vertical-align: top;
+    }
+
+    .msg-table td:first-child {
+      font-weight: 700;
+      color: #0d2244;
+      white-space: nowrap;
+      width: 160px;
+    }
+
+    .msg-table tr:last-child td { border-bottom: none; }
+    .msg-table tr:nth-child(even) td { background: #f5f7fa; }
+
+    .contact-block {
+      background: #0d2244;
+      color: #fff;
+      padding: 28px 36px;
+      margin-bottom: 16px;
+    }
+
+    .contact-block p {
+      font-size: 0.9rem;
+      color: #7a90a8;
+      line-height: 1.65;
+    }
+
+    .contact-block a {
+      color: #c41f2e;
+      text-decoration: none;
+    }
+
+    .contact-block a:hover { text-decoration: underline; }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid #d8dfe8;
+      padding: 18px 40px;
+      font-size: 0.72rem;
+      color: #7a90a8;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    footer a {
+      color: #7a90a8;
+      text-decoration: none;
+      border-bottom: 1px solid #d8dfe8;
+    }
+
+    footer a:hover { color: #0d2244; border-bottom-color: #0d2244; }
+
+    @media (max-width: 720px) {
+      .nav { padding: 0 20px; }
+      .page-header { padding: 36px 20px; }
+      .content-wrap { padding: 32px 16px 60px; }
+      .section { padding: 24px 20px; }
+      .req-grid { grid-template-columns: 1fr; }
+      .msg-table td:first-child { white-space: normal; width: auto; }
+      footer { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="nav-brand">My Job Bookie<sup>™</sup></a>
+    <a href="/#claim" class="nav-cta">Claim Your Territory</a>
+  </nav>
+</header>
+
+<div class="page-header">
+  <div class="label">Legal</div>
+  <h1>SMS Consent &amp; Opt-In Policy</h1>
+  <div class="updated">Ground Control IP LLC &nbsp;·&nbsp; Last Updated: April 22, 2026</div>
+</div>
+
+<main class="content-wrap">
+
+  <div class="section">
+    <h2><span class="num">1.</span> Overview</h2>
+    <p>This document describes how Ground Control IP LLC collects express consent from callers before sending SMS or MMS text messages. Ground Control operates branded vanity toll-free numbers (such as 866-SEALCOAT, 877-MULCHMAN, and similar numbers) that connect homeowners with licensed local contractors.</p>
+    <p>This policy is designed to comply with the Telephone Consumer Protection Act (TCPA), CTIA Messaging Principles and Best Practices, and carrier requirements for toll-free messaging verification.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">2.</span> How We Collect Consent (Opt-In)</h2>
+
+    <h3>2a. Verbal Consent During AI Voice Call</h3>
+    <p>When a caller interacts with our AI voice agent, the agent will verbally disclose that a text message will be sent and request the caller's consent before sending any SMS or MMS message.</p>
+    <div class="highlight">
+      "I'd like to send you a text message so you can reply with photos of your property or project. This will help your local contractor prepare an accurate estimate. Standard message and data rates may apply. You can reply STOP at any time to opt out. Would you like me to send that text now?"
+    </div>
+    <p>The caller must affirmatively agree (e.g., "yes," "sure," "go ahead") before any text message is sent. If the caller declines or does not respond, no message is sent.</p>
+
+    <h3>2b. Web Form Consent (Where Applicable)</h3>
+    <p>When a caller or prospect submits their phone number through a web form operated by Ground Control or a contractor partner, the form includes the following disclosure adjacent to the phone number field:</p>
+    <div class="highlight">
+      By providing your phone number and checking this box, you consent to receive SMS/MMS messages from Ground Control IP LLC on behalf of your local contractor. Messages may include estimate confirmations, photo requests, and follow-up information related to your project. Message frequency varies. Standard message and data rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. View our <a href="/privacy-policy" style="color:#c41f2e;">Privacy Policy</a> and <a href="/terms" style="color:#c41f2e;">Terms of Service</a>.
+    </div>
+    <p>The checkbox is unchecked by default and requires the user to take an affirmative action to opt in. The form will not submit a consent record unless the checkbox is checked.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">3.</span> Consent Requirements</h2>
+    <p>All consent collected by Ground Control meets the following standards:</p>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="req-label">Voluntary</div>
+        <p>Consent is never a condition of purchasing any goods or services. Callers may decline to receive text messages and still complete their inquiry and be connected to a contractor.</p>
+      </div>
+      <div class="req-item">
+        <div class="req-label">Informed</div>
+        <p>The caller is told who will send the message, what kind of messages they will receive, that standard rates may apply, and how to opt out.</p>
+      </div>
+      <div class="req-item">
+        <div class="req-label">Specific</div>
+        <p>Consent is collected for a specific purpose related to the caller's project inquiry, not for general marketing. Separate express written consent is obtained for any promotional messages.</p>
+      </div>
+      <div class="req-item">
+        <div class="req-label">Revocable</div>
+        <p>The caller can revoke consent at any time by replying STOP to any message. Opt-in data is never sold, shared, or transferred to any third party for their own use.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">4.</span> Consent Record Keeping</h2>
+    <p>Ground Control maintains records of each consent event, including:</p>
+    <ul>
+      <li>The caller's phone number</li>
+      <li>The date and time consent was given</li>
+      <li>The method of consent (verbal during AI call, or web form submission)</li>
+      <li>The call recording or form submission record as evidence of consent</li>
+      <li>The specific disclosure provided at the time of consent</li>
+    </ul>
+    <p>These records are retained for a minimum of five (5) years and are available to Twilio or carriers upon request for verification purposes.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">5.</span> Opt-Out (Revocation of Consent)</h2>
+    <p>Recipients can opt out at any time by replying with any of the following keywords: <strong>STOP, STOPALL, UNSUBSCRIBE, CANCEL, END,</strong> or <strong>QUIT</strong>.</p>
+    <p>Upon receiving an opt-out keyword, the system will send one final confirmation message and will not send any further messages to that number unless the recipient re-consents. Opt-out requests are processed immediately and automatically through our messaging platform (Twilio).</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">6.</span> Help and Support</h2>
+    <p>Recipients may reply <strong>HELP</strong> to any message to receive the following response:</p>
+    <div class="highlight">
+      "This is Ground Control messaging on behalf of your local contractor. For help, contact support@groundcontrolip.com or reply STOP to unsubscribe. Standard message and data rates may apply."
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">7.</span> Sample Messages</h2>
+    <p>The following are examples of messages sent by Ground Control on behalf of local contractors:</p>
+    <table class="msg-table">
+      <thead>
+        <tr>
+          <th>Message Type</th>
+          <th>Sample Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Photo Request</td>
+          <td>Hi [Name], this is [Contractor Name] via 866-SEALCOAT. Please reply with photos of your driveway or project area so we can prepare an accurate estimate. Reply STOP to opt out.</td>
+        </tr>
+        <tr>
+          <td>Estimate Confirmation</td>
+          <td>Hi [Name], your free estimate with [Contractor Name] is confirmed for [Date/Time] at [Address]. Reply STOP to opt out of messages.</td>
+        </tr>
+        <tr>
+          <td>Follow-Up</td>
+          <td>Hi [Name], thanks for calling 866-SEALCOAT. Your local contractor [Contractor Name] will be in touch shortly about your project. Reply STOP to opt out.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">8.</span> Approved Use Cases</h2>
+    <p>Messages sent from toll-free numbers operated by Ground Control fall under the following use case categories:</p>
+    <ul>
+      <li><strong>Customer Care</strong> — responding to inbound inquiries about home services</li>
+      <li><strong>Delivery Notifications</strong> — estimate and appointment confirmations</li>
+      <li><strong>Account Notifications</strong> — service-related updates to callers who have opted in</li>
+    </ul>
+  </div>
+
+  <div class="contact-block">
+    <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7a90a8;margin-bottom:10px;">Contact</p>
+    <p>Ground Control IP LLC &nbsp;·&nbsp; <a href="mailto:support@groundcontrolip.com">support@groundcontrolip.com</a></p>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 My Job Bookie™ &nbsp;·&nbsp; All rights reserved
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="/terms">Terms of Service</a>
+  &nbsp;·&nbsp;
+  <a href="/privacy-policy">Privacy Policy</a>
+  &nbsp;·&nbsp;
+  <a href="/sms-consent">SMS Consent Policy</a>
+</footer>
+
+</body>
+</html>
