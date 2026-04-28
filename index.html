@@ -3,43 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Job Bookie™ — Stop Chasing Shared Leads. Own Your Territory.</title>
-  <meta name="description" content="My Job Bookie™ gives contractors exclusive, territory-locked leads. No shared leads, no competition — your brand advertised in the exact neighborhoods you already serve.">
+  <title>Mulchman Nation™ — Stop Chasing Shared Leads. Own Your Territory.</title>
+  <meta name="description" content="Mulchman Nation™ gives contractors exclusive, territory-locked leads. No shared leads, no competition — your brand advertised in the exact neighborhoods you already serve.">
   <meta name="keywords" content="contractor leads, exclusive territory leads, lead generation for contractors, contractor marketing, no shared leads, Angie's List alternative, Google Ads alternative, exclusive contractor leads">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="My Job Bookie™">
-  <link rel="canonical" href="https://myjobbook.com/">
+  <meta name="author" content="Mulchman Nation™">
+  <link rel="canonical" href="https://877mulchman.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="My Job Bookie™">
-  <meta property="og:title" content="My Job Bookie™ — Stop Chasing Shared Leads. Own Your Territory.">
+  <meta property="og:site_name" content="Mulchman Nation™">
+  <meta property="og:title" content="Mulchman Nation™ — Stop Chasing Shared Leads. Own Your Territory.">
   <meta property="og:description" content="Exclusive territory-locked lead generation for contractors. Zero shared leads, zero competition. Your brand, your neighborhood, your phone.">
-  <meta property="og:url" content="https://myjobbook.com/">
-  <meta property="og:image" content="https://myjobbook.com/assets/images/hero2.jpg">
+  <meta property="og:url" content="https://877mulchman.com/">
+  <meta property="og:image" content="https://877mulchman.com/assets/images/hero2.jpg">
   <meta property="og:image:width" content="1026">
   <meta property="og:image:height" content="820">
-  <meta property="og:image:alt" content="Contractor equipment with My Job Bookie branded phone number">
+  <meta property="og:image:alt" content="Contractor equipment with Mulchman Nation branded phone number">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="My Job Bookie™ — Stop Chasing Shared Leads. Own Your Territory.">
+  <meta name="twitter:title" content="Mulchman Nation™ — Stop Chasing Shared Leads. Own Your Territory.">
   <meta name="twitter:description" content="Exclusive territory-locked lead generation for contractors. Zero shared leads, zero competition. Your brand, your neighborhood, your phone.">
-  <meta name="twitter:image" content="https://myjobbook.com/assets/images/hero2.jpg">
-  <meta name="twitter:image:alt" content="Contractor equipment with My Job Bookie branded phone number">
+  <meta name="twitter:image" content="https://877mulchman.com/assets/images/hero2.jpg">
+  <meta name="twitter:image:alt" content="Contractor equipment with Mulchman Nation branded phone number">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "My Job Bookie™",
-    "url": "https://myjobbook.com",
+    "name": "Mulchman Nation™",
+    "url": "https://877mulchman.com",
     "description": "Exclusive territory-based lead generation for contractors. Locked territories, zero shared leads, real advertising in your specific neighborhoods.",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "sales",
-      "email": "sales@GroundControlLLP.com"
+      "email": "info@mulchmannation.com"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -310,10 +310,15 @@
 
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      max-width: 1200px;
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 100%;
       margin: 0 auto;
+    }
+
+    .photo-grid .photo-grid-item {
+      aspect-ratio: unset;
+      height: 140px;
     }
 
     .photo-grid-item {
@@ -579,30 +584,85 @@
 
     /* ABOVE-THE-FOLD CONTAINER */
     .fold {
-      display: flex;
-      flex-direction: column;
-      height: calc(100dvh - 80px);
-    }
-
-    .fold .photo-strip {
-      flex: 0 0 auto;
-    }
-
-    .fold .promise-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 52vh;
+      min-height: 320px;
+      background: #fff;
+      border-bottom: none;
       overflow: hidden;
     }
 
-    .fold .promise-section .promise-cards {
-      flex-shrink: 1;
+    .fold-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 36px 40px 36px 64px;
     }
 
-    /* Liberar la altura fija del fold antes — en tabletas ya no cabe todo en 100vh */
+    .fold-left .kicker {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #c41f2e;
+      margin-bottom: 16px;
+    }
+
+    .fold-left .big-number {
+      font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+      font-weight: 900;
+      color: #0d2244;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .fold-left .big-number span { color: #c41f2e; }
+
+    .fold-left h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 800;
+      color: #0d2244;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .fold-left p {
+      font-size: 0.9rem;
+      color: #4a5d70;
+      line-height: 1.65;
+      max-width: 400px;
+      margin-bottom: 32px;
+    }
+
+    .fold-right {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fold-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% 40%;
+      display: block;
+    }
+
+    .fold-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #fff 0%, transparent 18%);
+      z-index: 1;
+    }
+
     @media (max-width: 960px) {
-      .fold { height: auto; }
+      .fold { grid-template-columns: 1fr; height: auto; }
+      .fold-right { height: 300px; }
+      .fold-left { padding: 48px 32px; }
     }
 
     @media (max-width: 900px) {
@@ -646,71 +706,55 @@
 
 <header>
   <nav class="nav" aria-label="Main navigation">
-    <div class="nav-brand">My Job Bookie<sup>™</sup></div>
-    <a href="#" class="nav-cta">Claim Your Territory</a>
+    <div class="nav-brand">Mulchman Nation<sup>™</sup></div>
+    <a href="territory.html" class="nav-cta">Claim Your Territory</a>
   </nav>
 </header>
 
 <main>
 
-  <!-- ABOVE THE FOLD: fotos + promise juntos en 100vh -->
+  <!-- ABOVE THE FOLD: hero 2 columnas -->
   <div class="fold">
 
-  <!-- 2. PHOTO STRIP — phone number images -->
-  <div class="photo-strip" role="region" aria-label="Contractor examples">
-    <div class="photo-strip-label">Your brand. Your number. On every truck, sign, and neighborhood.</div>
-    <div class="photo-grid">
-      <div class="photo-grid-item">
-        <img src="assets/images/sealcoat.png" alt="Sealcoat contractor with branded number">
-        <span class="photo-label">Sealcoating</span>
-      </div>
-      <div class="photo-grid-item">
-        <img src="assets/images/rent-go.png" alt="Lawn contractor with branded number">
-        <span class="photo-label">Lawn Care</span>
-      </div>
-      <div class="photo-grid-item">
-        <img src="assets/images/mulch-me.png" alt="Mulch contractor with branded number">
-        <span class="photo-label">Mulching</span>
-      </div>
-      <div class="photo-grid-item">
-        <img src="assets/images/Lawnmax.png" alt="Lawn max branded number">
-        <span class="photo-label">Lawn Max</span>
-      </div>
+    <!-- Izquierda: texto -->
+    <div class="fold-left">
+      <div class="kicker">Mulchman Nation™</div>
+      <h2>The Mulchman Nation Promise:<br>100% Exclusivity</h2>
+      <p>We don't just send you leads — we hand you an entire territory. Every mulching job, every landscape bed, every call from your ZIP code comes straight to you.</p>
+      <a href="territory.html" class="btn">Claim My Territory</a>
     </div>
-  </div>
 
-  <!-- 3. THE PROMISE — centered, impactful -->
-  <section class="promise-section">
-    <div class="section-label">The Promise</div>
-    <h2>The My Job Bookie Promise:<br>100% Exclusivity</h2>
-    <p class="intro">We don't just send you leads — we secure your future with a level of protection the big guys won't offer.</p>
-    <a href="#" class="btn" style="display:inline-block;">Claim My Territory</a>
-    <div class="promise-cards">
-      <div class="p-card">
-        <div class="check">&#10003;</div>
-        <strong>Your Territory is Locked</strong>
-        <p>We will never let another company in your area use this system. Once you subscribe, that territory is yours and yours alone.</p>
-      </div>
-      <div class="p-card">
-        <div class="check">&#10003;</div>
-        <strong>Zero Shared Leads</strong>
-        <p>Every lead generated in your territory goes directly to your phone. Never recycled, faked, or shared with a competitor.</p>
-      </div>
-      <div class="p-card">
-        <div class="check">&#10003;</div>
-        <strong>Real Advertising, Real Results</strong>
-        <p>Your number and your brand, advertising in the specific neighborhoods you already serve.</p>
-      </div>
+    <!-- Derecha: foto -->
+    <div class="fold-right">
+      <img src="assets/images/mulch-me.png" alt="877-MULCHMAN mulch delivery sign">
     </div>
-  </section>
 
   </div><!-- /.fold -->
+
+  <!-- CARDS: Pick Your Number / Territory / All Calls -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);background:#f5f7fa;border-bottom:3px solid #c41f2e;">
+    <div class="p-card" style="border:none;border-right:1px solid #d8dfe8;border-radius:0;padding:28px 28px;">
+      <div class="check">&#10003;</div>
+      <strong>Pick Your Number</strong>
+      <p>One mulching contractor per ZIP code — period. Once you claim it, no competitor can take your calls through 877-MULCHMAN in your area.</p>
+    </div>
+    <div class="p-card" style="border:none;border-right:1px solid #d8dfe8;border-radius:0;padding:28px 28px;">
+      <div class="check">&#10003;</div>
+      <strong>Pick Your Territory</strong>
+      <p>Every call from your territory rings your phone, not five others. Never recycled, faked, or shared with a competitor.</p>
+    </div>
+    <div class="p-card" style="border:none;border-radius:0;padding:28px 28px;">
+      <div class="check">&#10003;</div>
+      <strong>All Calls Go to You</strong>
+      <p>877-MULCHMAN on your truck and yard signs — advertising in the exact neighborhoods you already mulch.</p>
+    </div>
+  </div>
 
   <!-- 4. HERO — Stop Chasing Shared Leads -->
   <div class="hero">
     <div class="hero-left">
       <h1>Stop Chasing <span>Shared Leads.</span><br>Start Owning Your Territory.</h1>
-      <p class="tagline">It's your business. It's your territory. Own it with My Job Bookie.™</p>
+      <p class="tagline">It's your business. It's your territory. Own it with Mulchman Nation.™</p>
     </div>
   </div>
 
@@ -726,7 +770,7 @@
     </div>
     <div class="stat-cell">
       <div class="stat-num">1</div>
-      <div class="stat-desc">Company per territory<br>with My Job Bookie. You.</div>
+      <div class="stat-desc">Company per territory<br>with Mulchman Nation. You.</div>
     </div>
   </div>
 
@@ -769,7 +813,7 @@
           <h2>Stop the <em>"Hit and Miss"</em> Spending.</h2>
           <p>It's time to move to a system where you aren't just another contractor in a race to the bottom. It's your business. It's your territory.</p>
         </div>
-        <a href="#" class="btn">Claim My Territory</a>
+        <a href="territory.html" class="btn">Claim My Territory</a>
       </div>
     </div>
 
@@ -777,15 +821,7 @@
 
 </main>
 
-  <footer>
-    © 2026 My Job Bookie™ &nbsp;·&nbsp; All rights reserved
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="/terms" style="color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8;">Terms of Service</a>
-    &nbsp;·&nbsp;
-    <a href="/privacy-policy" style="color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8;">Privacy Policy</a>
-    &nbsp;·&nbsp;
-    <a href="/consent" style="color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8;">SMS Consent Policy</a>
-  </footer>
+  <footer>© 2026 Mulchman Nation™ &nbsp;·&nbsp; All rights reserved</footer>
 
 </body>
 </html>
