@@ -280,7 +280,8 @@ footer a{color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8}
         <div class="mf"><label>Phone Number</label><input type="tel" id="m-ph" placeholder="(555) 000-0000" required></div>
         <div class="mf"><label>Full Address</label><input type="text" id="m-addr" placeholder="123 Main St, City, State, ZIP" required></div>
         <div class="mf"><label>Territory</label><input type="text" id="m-town" readonly></div>
-        <button class="mo-submit" onclick="submitClaim()">Reserve My Territory →</button>
+        <button class="mo-submit" id="mo-submit-btn" onclick="submitClaim()">Reserve My Territory →</button>
+        <div id="mo-err" style="display:none;color:#c41f2e;font-size:0.82rem;margin-top:8px;font-weight:600;line-height:1.4"></div>
         <p class="mo-note">No commitments yet — we'll confirm availability first.<br>
           By submitting you agree to our <a href="/terms">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p>
       </div>
@@ -509,16 +510,43 @@ function openModal(){
   document.getElementById('modal').classList.add('act');
 }
 function closeModal(){document.getElementById('modal').classList.remove('act')}
+var SIGNUP_URL='https://mulchmannation.app.n8n.cloud/webhook/contractor-signup';
+function showErr(msg){var e=document.getElementById('mo-err');e.textContent=msg;e.style.display='block';}
 function submitClaim(){
+  document.getElementById('mo-err').style.display='none';
   var fn=document.getElementById('m-fn').value.trim();
   var ln=document.getElementById('m-ln').value.trim();
   var biz=document.getElementById('m-biz').value.trim();
   var ph=document.getElementById('m-ph').value.trim();
   var addr=document.getElementById('m-addr').value.trim();
-  if(!fn||!ln||!biz||!ph||!addr){alert('Please fill in all fields.');return}
-  document.getElementById('mo-form-wrap').style.display='none';
-  document.getElementById('stn').textContent=sel+', NJ';
-  document.getElementById('mo-success').style.display='block';
+  if(!fn||!ln){return showErr('Please enter your first and last name.');}
+  if(!biz){return showErr('Please enter your business name.');}
+  if(!ph){return showErr('Please enter your phone number.');}
+  if(!addr){return showErr('Please enter your full address.');}
+  var zipStr=ZIPS[sel]||'';
+  var zips=zipStr?zipStr.split(',').map(function(z){return z.trim();}).filter(Boolean):[];
+  var btn=document.getElementById('mo-submit-btn');
+  btn.disabled=true;btn.textContent='Sending…';
+  fetch(SIGNUP_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({first_name:fn,last_name:ln,business_name:biz,phone:ph,address:addr,selected_zips:zips,source:'territory_form'})
+  }).then(function(res){
+    if(res.ok){
+      document.getElementById('mo-form-wrap').style.display='none';
+      document.getElementById('stn').textContent=sel+', NJ';
+      document.getElementById('mo-success').style.display='block';
+    } else if(res.status>=500){
+      showErr('Something went wrong on our end. Please try again in a moment.');
+      btn.disabled=false;btn.textContent='Reserve My Territory →';
+    } else {
+      showErr('There was a problem with your submission. Please check your information and try again.');
+      btn.disabled=false;btn.textContent='Reserve My Territory →';
+    }
+  }).catch(function(){
+    showErr('Couldn\'t reach our servers. Check your connection and try again.');
+    btn.disabled=false;btn.textContent='Reserve My Territory →';
+  });
 }
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
