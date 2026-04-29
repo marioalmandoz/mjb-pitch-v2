@@ -70,7 +70,6 @@ body{background:#fff;color:#0d2244;font-family:'Helvetica Neue',Helvetica,Arial,
 .tr.hid{display:none}
 .tr.clmd{opacity:0.55}
 .tn{font-size:0.85rem;font-weight:500;flex:1;min-width:0;color:#0d2244}
-.tn .zips{font-size:0.7rem;color:#7a90a8;font-weight:400;margin-left:6px}
 .tm{display:flex;align-items:center;gap:8px;font-size:0.75rem;flex-shrink:0}
 .tt{padding:2px 7px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-size:0.62rem}
 .tt.t1{background:#eef1f6;color:#7a90a8}
@@ -96,9 +95,6 @@ body{background:#fff;color:#0d2244;font-family:'Helvetica Neue',Helvetica,Arial,
 .tc-badge.t4{background:#0d2244;color:#fff}
 .tc-county{font-size:0.75rem;color:#7a90a8;margin-bottom:4px}
 
-.tc-zips-box{margin:12px 0;padding:12px 14px;background:#f5f7fa;border:1px solid #d8dfe8}
-.tc-zips-lbl{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7a90a8;margin-bottom:4px}
-.tc-zips-val{font-size:0.88rem;font-weight:600;color:#c41f2e;letter-spacing:0.04em;line-height:1.6}
 
 #mini-map{width:100%;height:140px;border:1px solid #d8dfe8;overflow:hidden;background:#f5f7fa;margin:10px 0}
 .tc-map-link{display:block;text-align:center;font-size:0.72rem;color:#7a90a8;text-decoration:none;margin-bottom:12px}
@@ -213,7 +209,7 @@ footer a{color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8}
   <div class="search-inner">
     <div class="search-wrap">
       <span class="search-icon">&#x2315;</span>
-      <input type="text" id="fi" placeholder="Filter by town, county, or ZIP code…" autocomplete="off" spellcheck="false">
+      <input type="text" id="fi" placeholder="Filter by town or county…" autocomplete="off" spellcheck="false">
     </div>
     <select id="ss">
       <option value="name">Sort: A–Z</option>
@@ -240,10 +236,6 @@ footer a{color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8}
           <div class="tc-badge" id="xb"></div>
         </div>
         <div class="tc-county" id="xco"></div>
-        <div class="tc-zips-box">
-          <div class="tc-zips-lbl">ZIP Codes Included</div>
-          <div class="tc-zips-val" id="xz"></div>
-        </div>
         <div id="mini-map"></div>
         <a class="tc-map-link" id="xmap-link" href="#" target="_blank" rel="noopener">View full coverage area →</a>
         <hr class="tc-div">
@@ -405,9 +397,8 @@ function build(){
     html+='<div class="ct">';
     towns.forEach(function(n){
       var d=gD(n,co),tier=gT(d.h),price=cP(d.h,d.v,d.i);
-      var zipStr=d.z?d.z.split(',').slice(0,3).join(', ')+(d.z.split(',').length>3?' …':''):'';
       html+='<div class="tr'+(d.claimed?' clmd':'')+'" data-n="'+n+'" data-co="'+co+'" data-p="'+price+'" data-t="'+tier+'">';
-      html+='<span class="tn">'+n+(zipStr?'<span class="zips">'+zipStr+'</span>':'')+'</span>';
+      html+='<span class="tn">'+n+'</span>';
       html+='<span class="tm"><span class="tp">$'+price+'/mo</span><span class="sd '+(d.claimed?'c':'a')+'"></span></span></div>';
     });
     html+='</div></div>';
@@ -474,9 +465,6 @@ function pick(n,co){
   document.getElementById('xn').textContent=n+', NJ';
   var b=document.getElementById('xb');b.textContent='Tier '+tier;b.className='tc-badge t'+tier;
   document.getElementById('xco').textContent=co+' County';
-  var zipEl=document.getElementById('xz');
-  if(d.z){zipEl.textContent=d.z.split(',').join('  ·  ')}
-  else{zipEl.innerHTML='<a href="https://www.unitedstateszipcodes.org/'+encodeURIComponent(n.toLowerCase().replace(/\s+/g,'-'))+'/" target="_blank" style="color:#c41f2e;text-decoration:none;font-size:0.8rem">Look up ZIP codes →</a>'}
   document.getElementById('xh').textContent=d.h.toLocaleString();
   document.getElementById('xv').textContent='$'+d.v.toLocaleString();
   document.getElementById('xi').textContent='$'+d.i.toLocaleString();
