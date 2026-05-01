@@ -443,7 +443,7 @@ function build(){
       var d=gD(n,co),tier=gT(d.h),price=cP(d.h,d.v,d.i);
       html+='<div class="tr'+(d.claimed?' clmd':'')+'" data-n="'+n+'" data-co="'+co+'" data-p="'+zC(n)+'" data-t="'+tier+'">';
       html+='<span class="tn">'+n+'</span>';
-      html+='<span class="tm"><span class="tp">'+(function(){var c=zC(n);return c===0?'Contact us':c+' ZIP'+(c===1?'':'s')+' available';})()+'</span><span class="sd '+(claimedLoadState==='loading'?'l':(d.claimed?'c':'a'))+'"></span></span></div>';
+      html+='<span class="tm"><span class="tp">'+(function(){var c=zC(n);if(c===0)return 'Contact us';var suffix=d.claimed?' · Claimed':' available';return c+' ZIP'+(c===1?'':'s')+suffix;})()+'</span><span class="sd '+(claimedLoadState==='loading'?'l':(d.claimed?'c':'a'))+'"></span></span></div>';
     });
     html+='</div></div>';
   });
