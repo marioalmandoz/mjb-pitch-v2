@@ -269,6 +269,7 @@ footer a{color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8}
           <div class="mf"><label>Last Name</label><input type="text" id="m-ln" placeholder="Smith" required></div>
         </div>
         <div class="mf"><label>Business Name</label><input type="text" id="m-biz" placeholder="Smith Mulching & Landscaping" required></div>
+        <div class="mf"><label>Email</label><input type="email" id="m-email" placeholder="you@business.com" required></div>
         <div class="mf"><label>Phone Number</label><input type="tel" id="m-ph" placeholder="(555) 000-0000" required></div>
         <div class="mf"><label>Full Address</label><input type="text" id="m-addr" placeholder="123 Main St, City, State, ZIP" required></div>
         <div class="mf"><label>Territory</label><input type="text" id="m-town" readonly></div>
@@ -494,47 +495,81 @@ function openModal(){
   document.getElementById('m-town').value=sel+', NJ';
   document.getElementById('mo-form-wrap').style.display='block';
   document.getElementById('mo-success').style.display='none';
-  ['m-fn','m-ln','m-biz','m-ph','m-addr'].forEach(function(id){document.getElementById(id).value=''});
+  ['m-fn','m-ln','m-biz','m-email','m-ph','m-addr'].forEach(function(id){document.getElementById(id).value=''});
+  var submitBtn=document.getElementById('mo-submit-btn');
+  submitBtn.textContent=claimed?'Reserve My Territory →':'Subscribe Now →';
+  submitBtn.disabled=false;
   document.getElementById('modal').classList.add('act');
 }
 function closeModal(){document.getElementById('modal').classList.remove('act')}
 var SIGNUP_URL='https://mulchmannation.app.n8n.cloud/webhook/contractor-signup';
+var CHECKOUT_URL='https://mulchmannation.app.n8n.cloud/webhook/create-checkout-session';
 function showErr(msg){var e=document.getElementById('mo-err');e.textContent=msg;e.style.display='block';}
 function submitClaim(){
   document.getElementById('mo-err').style.display='none';
   var fn=document.getElementById('m-fn').value.trim();
   var ln=document.getElementById('m-ln').value.trim();
   var biz=document.getElementById('m-biz').value.trim();
+  var email=document.getElementById('m-email').value.trim();
   var ph=document.getElementById('m-ph').value.trim();
   var addr=document.getElementById('m-addr').value.trim();
   if(!fn||!ln){return showErr('Please enter your first and last name.');}
   if(!biz){return showErr('Please enter your business name.');}
+  if(!email){return showErr('Please enter your email address.');}
+  var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){return showErr('Please enter a valid email address.');}
   if(!ph){return showErr('Please enter your phone number.');}
   if(!addr){return showErr('Please enter your full address.');}
   var zipStr=ZIPS[sel]||'';
   var zips=zipStr?zipStr.split(',').map(function(z){return z.trim();}).filter(Boolean):[];
+  if(zips.length===0){return showErr('No ZIP codes found for this territory. Please contact support.');}
   var btn=document.getElementById('mo-submit-btn');
-  btn.disabled=true;btn.textContent='Sending…';
-  fetch(SIGNUP_URL,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({first_name:fn,last_name:ln,business_name:biz,phone:ph,address:addr,selected_zips:zips,source:'territory_form'})
-  }).then(function(res){
-    if(res.ok){
-      document.getElementById('mo-form-wrap').style.display='none';
-      document.getElementById('stn').textContent=sel+', NJ';
-      document.getElementById('mo-success').style.display='block';
-    } else if(res.status>=500){
-      showErr('Something went wrong on our end. Please try again in a moment.');
+  btn.disabled=true;btn.textContent='Processing…';
+  var isClaimed=claimedSet.has(sel);
+  if(isClaimed){
+    fetch(SIGNUP_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({first_name:fn,last_name:ln,business_name:biz,email:email,phone:ph,address:addr,selected_zips:zips,source:'territory_form'})
+    }).then(function(res){
+      if(res.ok){
+        document.getElementById('mo-form-wrap').style.display='none';
+        document.getElementById('stn').textContent=sel+', NJ';
+        document.getElementById('mo-success').style.display='block';
+      } else if(res.status>=500){
+        showErr('Something went wrong on our end. Please try again in a moment.');
+        btn.disabled=false;btn.textContent='Reserve My Territory →';
+      } else {
+        showErr('There was a problem with your submission. Please check your information and try again.');
+        btn.disabled=false;btn.textContent='Reserve My Territory →';
+      }
+    }).catch(function(){
+      showErr('Couldn\'t reach our servers. Check your connection and try again.');
       btn.disabled=false;btn.textContent='Reserve My Territory →';
-    } else {
-      showErr('There was a problem with your submission. Please check your information and try again.');
-      btn.disabled=false;btn.textContent='Reserve My Territory →';
-    }
-  }).catch(function(){
-    showErr('Couldn\'t reach our servers. Check your connection and try again.');
-    btn.disabled=false;btn.textContent='Reserve My Territory →';
-  });
+    });
+  } else {
+    fetch(CHECKOUT_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({first_name:fn,last_name:ln,business_name:biz,email:email,phone:ph,address:addr,selected_zips:zips})
+    }).then(function(res){
+      return res.json().then(function(data){return{ok:res.ok,status:res.status,data:data};});
+    }).then(function(r){
+      if(r.ok&&r.data.checkout_url){
+        window.location.href=r.data.checkout_url;
+      } else if(r.status>=500){
+        showErr('Something went wrong on our end. Please try again in a moment.');
+        btn.disabled=false;btn.textContent='Subscribe Now →';
+      } else {
+        var detail=(r.data&&r.data.detail)?r.data.detail:'Please check your information and try again.';
+        showErr(detail);
+        btn.disabled=false;btn.textContent='Subscribe Now →';
+      }
+    }).catch(function(){
+      showErr('Couldn\'t reach our servers. Check your connection and try again.');
+      btn.disabled=false;btn.textContent='Subscribe Now →';
+    });
+  }
 }
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
