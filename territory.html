@@ -214,8 +214,8 @@ footer a{color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8}
     <select id="ss">
       <option value="name">Sort: A–Z</option>
       <option value="name-desc">Sort: Z–A</option>
-      <option value="price-asc">Price: Low–High</option>
-      <option value="price-desc">Price: High–Low</option>
+      <option value="price-asc">ZIPs: Low–High</option>
+      <option value="price-desc">ZIPs: High–Low</option>
       <option value="tier-asc">Tier: 1–4</option>
       <option value="tier-desc">Tier: 4–1</option>
     </select>
@@ -244,7 +244,7 @@ footer a{color:#7a90a8;text-decoration:none;border-bottom:1px solid #d8dfe8}
         <div class="tc-row"><span class="tc-lbl">Median Income</span><span class="tc-val" id="xi"></span></div>
         <div class="tc-row"><span class="tc-lbl">Est. Monthly Leads</span><span class="tc-val" id="xl"></span></div>
         <div class="tc-price-box">
-          <div class="tc-row" style="margin-bottom:4px"><span class="tc-lbl">Monthly</span><span><span class="tc-price" id="xm"></span><span class="tc-mo">/mo</span></span></div>
+          <div class="tc-row" style="margin-bottom:4px"><span class="tc-lbl">Monthly</span><span><span class="tc-price" id="xm"></span><span class="tc-mo">/mo per ZIP</span></span></div>
           <div class="tc-annual" id="xy"></div>
         </div>
         <div class="tc-status" id="xs"></div>
@@ -368,6 +368,12 @@ var ctyDef={"Atlantic":{h:4200,v:240000,i:43000,la:39.45,lo:-74.57},"Bergen":{h:
 
 var counties={"Atlantic":["Absecon","Atlantic City","Brigantine","Buena","Buena Vista","Corbin City","Egg Harbor City","Egg Harbor Twp","Estell Manor","Folsom","Galloway","Hamilton Twp","Hammonton","Linwood","Longport","Margate City","Mullica","Northfield","Pleasantville","Port Republic","Somers Point","Ventnor City","Weymouth"],"Bergen":["Allendale","Alpine","Bergenfield","Bogota","Carlstadt","Cliffside Park","Closter","Cresskill","Demarest","Dumont","Elmwood Park","East Rutherford","Edgewater","Emerson","Englewood","Englewood Cliffs","Fair Lawn","Fairview","Fort Lee","Franklin Lakes","Garfield","Glen Rock","Hackensack","Harrington Park","Hasbrouck Heights","Haworth","Hillsdale","Ho-Ho-Kus","Leonia","Little Ferry","Lodi","Lyndhurst","Mahwah","Maywood","Midland Park","Montvale","Moonachie","New Milford","North Arlington","Northvale","Norwood","Oakland","Old Tappan","Oradell","Palisades Park","Paramus","Park Ridge","Ramsey","Ridgefield","Ridgefield Park","Ridgewood","River Edge","River Vale","Rochelle Park","Rockleigh","Rutherford","Saddle Brook","Saddle River","South Hackensack","Teaneck","Tenafly","Teterboro","Upper Saddle River","Waldwick","Wallington","Washington Twp","Westwood","Woodcliff Lake","Wood-Ridge","Wyckoff"],"Burlington":["Bass River","Beverly","Bordentown","Bordentown Twp","Burlington City","Burlington Twp","Chesterfield","Cinnaminson","Delanco","Delran","Eastampton","Edgewater Park","Evesham","Fieldsboro","Florence","Hainesport","Lumberton","Mansfield","Maple Shade","Medford","Medford Lakes","Moorestown","Mount Holly","Mount Laurel","New Hanover","North Hanover","Palmyra","Pemberton","Pemberton Twp","Riverside","Riverton","Shamong","Southampton","Springfield","Tabernacle","Washington Twp","Westampton","Willingboro","Woodland","Wrightstown"],"Camden":["Audubon","Audubon Park","Barrington","Bellmawr","Berlin","Berlin Twp","Brooklawn","Camden","Cherry Hill","Chesilhurst","Clementon","Collingswood","Gibbsboro","Gloucester City","Gloucester Twp","Haddon Twp","Haddonfield","Haddon Heights","Hi-Nella","Laurel Springs","Lawnside","Lindenwold","Magnolia","Merchantville","Mount Ephraim","Oaklyn","Pennsauken","Pine Hill","Pine Valley","Runnemede","Somerdale","Stratford","Tavistock","Voorhees","Waterford","Winslow","Woodlynne"],"Cape May":["Avalon","Cape May","Cape May Point","Dennis","Lower Twp","Middle Twp","Ocean City","Sea Isle City","Stone Harbor","Upper Twp","West Cape May","West Wildwood","Wildwood","Wildwood Crest","Woodbine"],"Cumberland":["Bridgeton","Commercial","Deerfield","Downe","Fairfield","Greenwich","Hopewell","Lawrence","Maurice River","Millville","Shiloh","Stow Creek","Upper Deerfield","Vineland"],"Essex":["Belleville","Bloomfield","Caldwell","Cedar Grove","East Orange","Essex Fells","Fairfield","Glen Ridge","Irvington","Livingston","Maplewood","Millburn","Montclair","Newark","North Caldwell","Nutley","Orange","Roseland","South Orange","Verona","West Caldwell","West Orange"],"Gloucester":["Clayton","Deptford","East Greenwich","Elk","Franklin Twp","Glassboro","Greenwich","Harrison","Logan","Mantua","Monroe","National Park","Newfield","Paulsboro","Pitman","South Harrison","Swedesboro","Washington Twp","Wenonah","West Deptford","Westville","Woodbury","Woodbury Heights","Woolwich"],"Hudson":["Bayonne","East Newark","Guttenberg","Harrison","Hoboken","Jersey City","Kearny","North Bergen","Secaucus","Union City","Weehawken","West New York"],"Hunterdon":["Alexandria","Bethlehem","Bloomsbury","Califon","Clinton","Clinton Twp","Delaware","East Amwell","Flemington","Franklin Twp","Frenchtown","Glen Gardner","Hampton","High Bridge","Holland","Kingwood","Lambertville","Lebanon","Lebanon Twp","Milford","Raritan Twp","Readington","Stockton","Tewksbury","Union Twp","West Amwell"],"Mercer":["East Windsor","Ewing","Hamilton","Hightstown","Hopewell","Hopewell Twp","Lawrence","Pennington","Princeton","Trenton","Washington Twp","West Windsor"],"Middlesex":["Carteret","Cranbury","Dunellen","East Brunswick","Edison","Helmetta","Highland Park","Jamesburg","Old Bridge","Metuchen","Middlesex","Milltown","Monroe","New Brunswick","North Brunswick","Perth Amboy","Piscataway","Plainsboro","Sayreville","South Amboy","South Brunswick","South Plainfield","South River","Spotswood","Woodbridge"],"Monmouth":["Allenhurst","Allentown","Asbury Park","Atlantic Highlands","Avon-by-the-Sea","Belmar","Bradley Beach","Brielle","Colts Neck","Deal","Eatontown","Englishtown","Fair Haven","Farmingdale","Freehold","Freehold Twp","Highlands","Holmdel","Howell","Interlaken","Keansburg","Keyport","Little Silver","Loch Arbour","Long Branch","Manalapan","Manasquan","Marlboro","Matawan","Aberdeen","Middletown","Millstone","Monmouth Beach","Neptune","Neptune City","Tinton Falls","Ocean Twp","Oceanport","Hazlet","Red Bank","Roosevelt","Rumson","Sea Bright","Sea Girt","Shrewsbury","Shrewsbury Twp","Lake Como","Spring Lake","Spring Lake Heights","Union Beach","Upper Freehold","Wall","West Long Branch"],"Morris":["Boonton","Boonton Twp","Butler","Chatham","Chatham Twp","Chester","Chester Twp","Denville","Dover","East Hanover","Florham Park","Hanover","Harding","Kinnelon","Lincoln Park","Madison","Mendham","Mendham Twp","Mine Hill","Montville","Morris Twp","Morris Plains","Morristown","Mountain Lakes","Mount Arlington","Mount Olive","Netcong","Parsippany-Troy Hills","Long Hill","Pequannock","Randolph","Riverdale","Rockaway","Rockaway Twp","Roxbury","Victory Gardens","Washington Twp","Wharton"],"Ocean":["Barnegat Light","Bay Head","Beach Haven","Beachwood","Berkeley","Brick","Toms River","Eagleswood","Harvey Cedars","Island Heights","Jackson","Lacey","Lakehurst","Lakewood","Lavallette","Little Egg Harbor","Long Beach","Manchester","Mantaloking","Ocean Twp","Ocean Gate","Pine Beach","Plumsted","Point Pleasant","Point Pleasant Beach","Seaside Heights","Seaside Park","Ship Bottom","South Toms River","Stafford","Surf City","Tuckerton","Barnegat"],"Passaic":["Bloomingdale","Clifton","Haledon","Hawthorne","Little Falls","North Haledon","Passaic","Paterson","Pompton Lakes","Prospect Park","Ringwood","Totowa","Wanaque","Wayne","West Milford","Woodland Park"],"Salem":["Alloway","Elmer","Elsinboro","Lower Alloways Creek","Mannington","Oldmans","Penns Grove","Pennsville","Pilesgrove","Pittsgrove","Quinton","Salem","Carneys Point","Upper Pittsgrove","Woodstown"],"Somerset":["Bedminster","Bernards","Bernardsville","Bound Brook","Branchburg","Bridgewater","Far Hills","Franklin Twp","Green Brook","Hillsborough","Manville","Millstone","Montgomery","North Plainfield","Peapack-Gladstone","Raritan","Rocky Hill","Somerville","South Bound Brook","Warren","Watchung"],"Sussex":["Andover","Andover Twp","Branchville","Byram","Frankford","Franklin","Fredon","Green","Hamburg","Hampton Twp","Hardyston","Hopatcong","Lafayette","Montague","Newton","Ogdensburg","Sandyston","Sparta","Stanhope","Stillwater","Sussex","Vernon","Walpack","Wantage"],"Union":["Berkeley Heights","Clark","Cranford","Elizabeth","Fanwood","Garwood","Hillside","Kenilworth","Linden","Mountainside","New Providence","Plainfield","Rahway","Roselle","Roselle Park","Scotch Plains","Springfield","Summit","Union","Westfield","Winfield"],"Warren":["Allamuchy","Alpha","Belvidere","Blairstown","Franklin Twp","Frelinghuysen","Greenwich","Hackettstown","Hardwick","Harmony","Hope","Independence","Knowlton","Liberty","Lopatcong","Mansfield","Oxford","Phillipsburg","Pohatcong","Washington","Washington Twp","White"]};
 
+function zC(n){
+  var s=ZIPS[n];
+  if(!s)return 0;
+  return s.split(',').filter(Boolean).length;
+}
+
 function gD(n,co){
   var zipStr=ZIPS[n]||null;
   if(K[n])return{h:K[n].h,v:K[n].v,i:K[n].i,r:K[n].r,claimed:claimedSet.has(n),co:co,la:K[n].la,lo:K[n].lo,z:K[n].z||zipStr};
@@ -398,9 +404,9 @@ function build(){
     html+='<div class="ct">';
     towns.forEach(function(n){
       var d=gD(n,co),tier=gT(d.h),price=cP(d.h,d.v,d.i);
-      html+='<div class="tr'+(d.claimed?' clmd':'')+'" data-n="'+n+'" data-co="'+co+'" data-p="'+price+'" data-t="'+tier+'">';
+      html+='<div class="tr'+(d.claimed?' clmd':'')+'" data-n="'+n+'" data-co="'+co+'" data-p="'+zC(n)+'" data-t="'+tier+'">';
       html+='<span class="tn">'+n+'</span>';
-      html+='<span class="tm"><span class="tp">$'+price+'/mo</span><span class="sd '+(d.claimed?'c':'a')+'"></span></span></div>';
+      html+='<span class="tm"><span class="tp">'+(function(){var c=zC(n);return c===0?'Contact us':c+' ZIP'+(c===1?'':'s')+' available';})()+'</span><span class="sd '+(d.claimed?'c':'a')+'"></span></span></div>';
     });
     html+='</div></div>';
   });
@@ -470,8 +476,13 @@ function pick(n,co){
   document.getElementById('xv').textContent='$'+d.v.toLocaleString();
   document.getElementById('xi').textContent='$'+d.i.toLocaleString();
   document.getElementById('xl').textContent=eL(d.h);
-  document.getElementById('xm').textContent='$'+mo;
-  document.getElementById('xy').innerHTML='Annual: $'+yr.toLocaleString()+' <span>(1 month free)</span>';
+  document.getElementById('xm').textContent='$1';
+  var zc=zC(n);
+  if(zc>0){
+    document.getElementById('xy').innerHTML=zc+' ZIP'+(zc===1?'':'s')+' × $1/mo = <strong>$'+zc+'/month total</strong>';
+  }else{
+    document.getElementById('xy').innerHTML='Contact us for ZIP details';
+  }
   document.getElementById('xs').innerHTML=d.claimed?'<div class="st-dot c"></div><span style="color:#c41f2e">Claimed</span>':'<div class="st-dot a"></div><span style="color:#2a9d5c">Available</span>';
   var btn=document.getElementById('xbtn');
   btn.textContent=d.claimed?'Join Waitlist':'Claim This Territory';
